@@ -6,7 +6,7 @@
 }
 
 body {
-    background: linear-gradient(45deg, cyan, yellow);
+    background: linear-gradient(-45deg, cyan, white);
     height: 100dvh;
     display: flex;
     flex-direction: column;
@@ -19,7 +19,7 @@ main {
     flex-direction: column;
     border-radius: 1rem;
     border: none;
-    box-shadow: .25rem .25rem .75rem gray;
+    box-shadow: .25rem .25rem .75rem black;
     padding: 1rem;
     background-color: black;
     gap: .5rem;
@@ -49,6 +49,7 @@ main {
 }
 
 .buttons {
+    cursor: default;
     display: grid;
 }
 
@@ -69,7 +70,7 @@ button:hover {
     opacity: 90%;
 }
 
-.operators {
+.operator {
     text-transform: uppercase;
     background-color: orange;
 }
