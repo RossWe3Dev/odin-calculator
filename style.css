@@ -6,6 +6,7 @@
 }
 
 body {
+    background: linear-gradient(45deg, cyan, yellow);
     height: 100dvh;
     display: flex;
     flex-direction: column;
@@ -17,48 +18,42 @@ main {
     display: flex;
     flex-direction: column;
     border-radius: 1rem;
-    border: 2px solid black;
+    border: none;
+    box-shadow: .25rem .25rem .75rem gray;
     padding: 1rem;
-    background-color: lightgray;
-    gap: .75rem;
-    max-width: 30vw;
+    background-color: black;
+    gap: .5rem;
+    max-width: 40vw;
+    font-weight: 900;
+    font-size: 1.5rem;
 }
 
 .screen {
-    border-radius: .5rem;
-    border: inherit;
-    padding: inherit;
-    background-color: lightgreen;
-    flex: 1;
+    display: flex;
+    align-items: center;
+    height: 10vh;
+    background-color: inherit;
+    color: white;
 }
 
 .buttons {
-    display: flex;
-    gap: .5rem;
-}
-
-.operands {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: inherit;
-}
-
-.operators {
-    display: flex;
-    flex-direction: column;
+    display: grid;
     gap: inherit;
 }
 
 button {
     cursor: pointer;
-    border-radius: 50%;
     border: none;
-    padding: 1rem;
-    font-weight: 900;
-    font-size: 1.5rem;
-    background-color: gray;
+    height: 3rem;
+    width: 3rem;
+    border-radius: 50%;
+    font-weight: inherit;
+    font-size: inherit;
+    background-color: lightgray;
+}
+
+button:hover {
+    opacity: 90%;
 }
 
 .operators>button {
