@@ -4,33 +4,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculator | TOP </title>
+    <title>Calculator || TOP </title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
     <h1>Calculator</h1>
     <main>
-        <div class="screen">Results</div>
+        <div class="display">
+            <div class="history">No history yet</div>
+            <div class="result">0</div>
+        </div>
         <div class="buttons">
-            <div class="operands">
-                <button id="1">1</button>
-                <button id="2">2</button>
-                <button id="3">3</button>
-                <button id="4">4</button>
-                <button id="5">5</button>
-                <button id="6">6</button>
-                <button id="7">7</button>
-                <button id="8">8</button>
-                <button id="9">9</button>
-                <button id="0">0</button>
-            </div>
-            <div class="operators">
-                <button id="plus">+</button>
-                <button id="minus">-</button>
-                <button id="divide">÷</button>
-                <button id="multiply">×</button>
-                <button id="equal">=</button>
+            <div>
+                <button class="operands" id="1">1</button>
+                <button class="operands" id="2">2</button>
+                <button class="operands" id="3">3</button>
+                <button class="operands" id="4">4</button>
+                <button class="operands" id="5">5</button>
+                <button class="operands" id="6">6</button>
+                <button class="operands" id="7">7</button>
+                <button class="operands" id="8">8</button>
+                <button class="operands" id="9">9</button>
+                <button class="operands" id="0">0</button>
+
+                <button class="operators" id="plus">+</button>
+                <button class="operators" id="minus">-</button>
+                <button class="operators" id="divide">÷</button>
+                <button class="operators" id="multiply">×</button>
+                <button class="operators" id="equal">=</button>
+
+                <button class="clear" id="clear">C</button>
             </div>
         </div>
     </main>

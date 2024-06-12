@@ -28,35 +28,52 @@ main {
     font-size: 1.5rem;
 }
 
-.screen {
+.display {
     display: flex;
-    align-items: center;
-    height: 10vh;
+    flex-direction: column;
+    align-items: end;
+    height: 15vh;
     background-color: inherit;
     color: white;
 }
 
+.history {
+    height: 5vh;
+    font-size: 1rem;
+    color: lightgray;
+}
+
+.result {
+    height: 10vh;
+    font-size: 2.5rem;
+}
+
 .buttons {
     display: grid;
-    gap: inherit;
 }
 
 button {
     cursor: pointer;
     border: none;
-    height: 3rem;
-    width: 3rem;
-    border-radius: 50%;
     font-weight: inherit;
     font-size: inherit;
     background-color: lightgray;
+    /* not ideal */
+    margin: .25rem;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
 }
 
 button:hover {
     opacity: 90%;
 }
 
-.operators>button {
+.operators {
     text-transform: uppercase;
     background-color: orange;
+}
+
+.clear {
+    background-color: coral;
 }
