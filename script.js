@@ -28,50 +28,56 @@ function roundResult(result) {
 let firstNum;
 let operator = null;
 let secondNum;
+let shouldResetDisplay = false;
 
 const display = document.querySelector('.result');
 const historyDisplay = document.querySelector('.history');
+const operandBtn = document.querySelectorAll('.operand');
+const operatorBtn = document.querySelectorAll('.operator');
+const operateBtn = document.querySelector('.operate');
+const clearBtn = document.querySelector('.clear');
+const deleteBtn = document.querySelector('.delete');
 
-let shouldResetScreen = false;
-
-function emptyDisplay() {
+//* Functions
+function resetDisplay() {
     display.textContent = '';
-    shouldResetScreen = false
+    shouldResetDisplay = false
 }
 
-const operandBtn = document.querySelectorAll('.operand');
-operandBtn.forEach((button) => {
-    button.addEventListener('click', () => {
-        if (display.textContent === '0' || shouldResetScreen) emptyDisplay();
-        display.textContent += button.textContent
-    })
-});
-
-const operatorBtn = document.querySelectorAll('.operator');
-operatorBtn.forEach((button) => {
-    button.addEventListener('click', function () {
-        if (operator !== null) evaluate();
-        firstNum = Number(display.textContent);
-        operator = button.textContent;
-        display.textContent += button.textContent;
-        historyDisplay.textContent = `${firstNum}${operator}`;
-        shouldResetScreen = true;
-    })
-});
-
-const operateBtn = document.querySelector('.operate');
-operateBtn.addEventListener('click', evaluate);
-
 function evaluate() {
-    if (operator == null || shouldResetScreen) return;
+    if (operator == null || shouldResetDisplay) return;
+
     secondNum = Number(display.textContent);
+
     display.textContent = roundResult(operate(operator, firstNum, secondNum));
-    console.log(firstNum, secondNum);
     historyDisplay.textContent = `${firstNum}${operator}${secondNum}=`;
     operator = null;
 }
 
-const clearBtn = document.querySelector('.clear');
+//* Event Listeners
+operandBtn.forEach((button) => {
+    button.addEventListener('click', () => {
+        if (display.textContent === '0' || shouldResetDisplay) resetDisplay();
+
+        display.textContent += button.textContent
+    })
+});
+
+operatorBtn.forEach((button) => {
+    button.addEventListener('click', function () {
+        if (operator !== null) evaluate();
+
+        firstNum = Number(display.textContent);
+        operator = button.textContent;
+
+        display.textContent += button.textContent;
+        historyDisplay.textContent = `${firstNum}${operator}`;
+        shouldResetDisplay = true;
+    })
+});
+
+operateBtn.addEventListener('click', evaluate);
+
 clearBtn.addEventListener('click', () => {
     historyDisplay.textContent = 'Cleared History!';
     display.textContent = '0';
@@ -80,13 +86,13 @@ clearBtn.addEventListener('click', () => {
     operator = null;
 });
 
-const deleteBtn = document.querySelector('.delete');
 deleteBtn.addEventListener('click', () => {
-    display.textContent = display.textContent.slice(0, -1)
+    display.textContent = display.textContent.toString().slice(0, -1)
 });
 
+
 /*
-//! Buttons elements
+//! Buttons elements f0r keyboard support
 const one = document.querySelector('#one');
 const two = document.querySelector('#two');
 const three = document.querySelector('#three');
@@ -97,11 +103,4 @@ const seven = document.querySelector('#seven');
 const eight = document.querySelector('#eight');
 const nine = document.querySelector('#nine');
 const zero = document.querySelector('#zero');
-
-const addOp = document.querySelector('#add');
-const subtractOp = document.querySelector('#subtract');
-const multiplyOp = document.querySelector('#multiply');
-const divideOp = document.querySelector('#divide');
-const equal = document.querySelector('#equal');
-const clear = document.querySelector('#clear');
 */
