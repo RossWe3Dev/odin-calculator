@@ -68,6 +68,12 @@ operateBtn.addEventListener('click', () => {
     console.log(firstNum, secondNum);
 });
 
+const clearBtn = document.querySelector('.clear');
+clearBtn.addEventListener('click', () => {
+    history.innerText = 'Cleared History!';
+    displayValue = '';
+    updateDisplayValue();
+});
 
 /*
 //! Buttons elements
