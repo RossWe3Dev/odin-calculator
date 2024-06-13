@@ -28,50 +28,57 @@ function operate(operator, num1, num2) {
 };
 
 let firstNum;
-let operator;
+let operator = null;
 let secondNum;
 
 const display = document.querySelector('.result');
 let displayValue = '';
 
 const operandBtn = document.querySelectorAll('.operand');
-for (let i = 0; i < operandBtn.length; i++) {
-    operandBtn[i].addEventListener('click', function () {
-        displayValue += operandBtn[i].innerText;
+operandBtn.forEach((button) => {
+    button.addEventListener('click', () => {
+        displayValue += button.textContent
         updateDisplayValue();
     })
-};
+});
 
 function updateDisplayValue() {
     display.textContent = displayValue;
 };
 
 const operatorBtn = document.querySelectorAll('.operator');
-for (let i = 0; i < operatorBtn.length; i++) {
-    operatorBtn[i].addEventListener('click', function () {
-        operator = operatorBtn[i].innerText;
-        displayValue += operatorBtn[i].innerText;
+operatorBtn.forEach((button) => {
+    button.addEventListener('click', function () {
+        // firstNum = display.textContent;
+        operator = button.textContent;
+        displayValue += button.textContent;
+        history.textContent = displayValue;
         updateDisplayValue();
     })
-};
+});
 
 const history = document.querySelector('.history');
 const operateBtn = document.querySelector('.operate');
 operateBtn.addEventListener('click', () => {
-    history.innerText = displayValue;
-    let arr = display.innerText.split(/[\+|\-|\×|\÷]/);
+    if (operator == null) return;
+    history.textContent = displayValue;
+    let arr = display.textContent.split(/[\+|\-|\×|\÷]/);
     firstNum = +arr[0];
     secondNum = +arr[1];
     displayValue = operate(operator, firstNum, secondNum);
     updateDisplayValue();
     console.log(displayValue);
     console.log(firstNum, secondNum);
+    operator = null;
 });
 
 const clearBtn = document.querySelector('.clear');
 clearBtn.addEventListener('click', () => {
-    history.innerText = 'Cleared History!';
+    history.textContent = 'Cleared History!';
     displayValue = '';
+    firstNum = '';
+    secondNum = '';
+    operator = null;
     updateDisplayValue();
 });
 
