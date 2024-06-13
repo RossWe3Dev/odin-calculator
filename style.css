@@ -24,7 +24,7 @@ main {
     background-color: black;
     gap: .5rem;
     max-width: 95vw;
-    font-weight: 900;
+    font-weight: 300;
 }
 
 .display {
@@ -61,21 +61,14 @@ button {
     margin: .25rem;
     width: 3.5rem;
     height: 3.5rem;
-    border-radius: 50%;
+    border-radius: 1rem;
 }
 
 button:hover {
     opacity: 90%;
-    scale: 97.5%;
+    scale: 95%;
 }
 
-.operator,
-.operate {
-    text-transform: uppercase;
-    background-color: orange;
-}
-
-.operate,
 .clear,
 .delete {
     width: 7.5rem;
@@ -92,8 +85,17 @@ button:hover {
     flex-wrap: nowrap;
 }
 
+.operator {
+    background-color: orange;
+}
+
+.operate {
+    background-color: rgb(0, 200, 0);
+}
+
 .clear {
     background-color: coral;
+    font-weight: bold;
 }
 
 .delete {
