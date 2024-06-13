@@ -30,10 +30,19 @@ let operator = null;
 let secondNum;
 
 const display = document.querySelector('.result');
+const historyDisplay = document.querySelector('.history');
+
+let shouldResetScreen = false;
+
+function emptyDisplay() {
+    display.textContent = '';
+    shouldResetScreen = false
+}
 
 const operandBtn = document.querySelectorAll('.operand');
 operandBtn.forEach((button) => {
     button.addEventListener('click', () => {
+        if (display.textContent === '0' || shouldResetScreen) emptyDisplay();
         display.textContent += button.textContent
     })
 });
@@ -41,29 +50,30 @@ operandBtn.forEach((button) => {
 const operatorBtn = document.querySelectorAll('.operator');
 operatorBtn.forEach((button) => {
     button.addEventListener('click', function () {
-        // firstNum = display.textContent;
+        if (operator !== null) evaluate();
+        firstNum = Number(display.textContent);
         operator = button.textContent;
         display.textContent += button.textContent;
-        history.textContent = display.textContent;
+        historyDisplay.textContent = `${firstNum}${operator}`;
+        shouldResetScreen = true;
     })
 });
 
-const history = document.querySelector('.history');
 const operateBtn = document.querySelector('.operate');
-operateBtn.addEventListener('click', () => {
-    if (operator == null) return;
-    history.textContent = display.textContent;
-    let arr = display.textContent.split(/[\+|\-|\×|\÷]/);
-    firstNum = +arr[0];
-    secondNum = +arr[1];
+operateBtn.addEventListener('click', evaluate);
+
+function evaluate() {
+    if (operator == null || shouldResetScreen) return;
+    secondNum = Number(display.textContent);
     display.textContent = roundResult(operate(operator, firstNum, secondNum));
     console.log(firstNum, secondNum);
+    historyDisplay.textContent = `${firstNum}${operator}${secondNum}=`;
     operator = null;
-});
+}
 
 const clearBtn = document.querySelector('.clear');
 clearBtn.addEventListener('click', () => {
-    history.textContent = 'Cleared History!';
+    historyDisplay.textContent = 'Cleared History!';
     display.textContent = '0';
     firstNum = '';
     secondNum = '';
