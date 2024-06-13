@@ -23,9 +23,8 @@ main {
     padding: 1rem;
     background-color: black;
     gap: .5rem;
-    max-width: 40vw;
+    max-width: 90vw;
     font-weight: 900;
-    font-size: 1.5rem;
 }
 
 .display {
@@ -50,24 +49,24 @@ main {
 
 .buttons {
     cursor: default;
-    display: grid;
 }
 
 button {
     cursor: pointer;
     border: none;
     font-weight: inherit;
-    font-size: inherit;
+    font-size: 2rem;
     background-color: lightgray;
     /* not ideal */
     margin: .25rem;
-    width: 3rem;
-    height: 3rem;
+    width: 3.5rem;
+    height: 3.5rem;
     border-radius: 50%;
 }
 
 button:hover {
     opacity: 90%;
+    scale: 97.5%;
 }
 
 .operator,
@@ -76,9 +75,21 @@ button:hover {
     background-color: orange;
 }
 
-.operate {
-    width: 7rem;
-    border-radius: 1.5rem;
+.operate,
+.clear,
+.delete {
+    width: 7.5rem;
+    border-radius: 1rem;
+}
+
+.row-zero,
+.first-row,
+.second-row,
+.third-row,
+.fourth-row {
+    display: flex;
+    align-items: end;
+    flex-wrap: nowrap;
 }
 
 .clear {
@@ -87,4 +98,8 @@ button:hover {
 
 .delete {
     background-color: cyan;
+}
+
+.delete>img {
+    height: 100%;
 }

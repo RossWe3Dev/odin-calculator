@@ -12,13 +12,10 @@ function divide(a, b) {
 };
 
 function operate(operator, num1, num2) {
-    if (operator == '+') return add(num1, num2);
-    if (operator == '-') return subtract(num1, num2);
-    if (operator == '×') return multiply(num1, num2);
-    if (operator == '÷') {
-        if (num2 === 0) return 'Math ERROR'
-        else return divide(num1, num2)
-    };
+    if (operator === '+') return add(num1, num2);
+    if (operator === '-') return subtract(num1, num2);
+    if (operator === '×') return multiply(num1, num2);
+    if (operator === '÷') return divide(num1, num2);
 };
 
 function roundResult(result) {
@@ -48,6 +45,10 @@ function evaluate() {
     if (operator == null || shouldResetDisplay) return;
 
     secondNum = Number(display.textContent);
+    if (secondNum === 0 && operator === '÷') {
+        shouldResetDisplay = true;
+        return display.textContent = 'Math ERROR'
+    };
 
     display.textContent = roundResult(operate(operator, firstNum, secondNum));
     historyDisplay.textContent = `${firstNum}${operator}${secondNum}=`;
