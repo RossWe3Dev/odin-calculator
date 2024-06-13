@@ -1,24 +1,15 @@
-console.log('Hello World!');
-
 function add(a, b) {
     return a + b;
 };
-
 function subtract(a, b) {
     return a - b;
 };
-
 function multiply(a, b) {
     return a * b;
 };
-
 function divide(a, b) {
     return a / b;
 };
-
-let firstNum;
-let operator;
-let secondNum;
 
 function operate(operator, num1, num2) {
     if (operator == '+') return add(num1, num2);
@@ -27,21 +18,24 @@ function operate(operator, num1, num2) {
     if (operator == '/') return divide(num1, num2);
 };
 
+let firstNum;
+let operator;
+let secondNum;
+
 const display = document.querySelector('.result');
-let displayValue;
+let displayValue = '';
 
 const operand = document.querySelectorAll('.operand');
-
 for (let i = 0; i < operand.length; i++) {
-    operand[i].addEventListener('click', () => alert(operand[i].innerHTML))
+    operand[i].addEventListener('click', function () {
+        displayValue += operand[i].innerText;
+        updateDisplayValue();
+    })
 }
 
-/*
-function updateDisplay() {
-    let number = operand.innerHTML;
-    alert(number);
+function updateDisplayValue() {
+    display.textContent = displayValue;
 }
-*/
 
 //! Buttons elements
 const one = document.querySelector('#one');
