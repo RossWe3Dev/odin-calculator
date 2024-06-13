@@ -71,7 +71,6 @@ operatorBtn.forEach((button) => {
         firstNum = Number(display.textContent);
         operator = button.textContent;
 
-        display.textContent += button.textContent;
         historyDisplay.textContent = `${firstNum}${operator}`;
         shouldResetDisplay = true;
     })
