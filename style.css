@@ -6,7 +6,7 @@
 }
 
 body {
-    background: linear-gradient(-45deg, cyan, white);
+    background: linear-gradient(45deg, white, rgb(6, 185, 252));
     height: 100dvh;
     display: flex;
     flex-direction: column;
@@ -19,11 +19,11 @@ main {
     flex-direction: column;
     border-radius: 1rem;
     border: none;
-    box-shadow: .25rem .25rem .75rem black;
+    box-shadow: .5rem .5rem 1.5rem black;
     padding: 1rem;
     background-color: black;
     gap: .5rem;
-    max-width: 90vw;
+    max-width: 95vw;
     font-weight: 900;
 }
 
@@ -97,7 +97,7 @@ button:hover {
 }
 
 .delete {
-    background-color: cyan;
+    background-color: rgb(6, 185, 252);
 }
 
 .delete>img {
