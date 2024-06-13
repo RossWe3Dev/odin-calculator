@@ -12,20 +12,18 @@ function divide(a, b) {
 };
 
 function operate(operator, num1, num2) {
-    let result;
-    if (operator == '+') {
-        result = add(num1, num2)
-    } else if (operator == '-') {
-        result = subtract(num1, num2)
-    } else if (operator == '×') {
-        result = multiply(num1, num2)
-    } else if (operator == '÷') {
-        if (num2 === 0) return 'Math ERROR';
-        result = divide(num1, num2)
+    if (operator == '+') return add(num1, num2);
+    if (operator == '-') return subtract(num1, num2);
+    if (operator == '×') return multiply(num1, num2);
+    if (operator == '÷') {
+        if (num2 === 0) return 'Math ERROR'
+        else return divide(num1, num2)
     };
-    let resultRounded = Math.round((result + Number.EPSILON) * 100) / 100;
-    return resultRounded;
 };
+
+function roundResult(result) {
+    return Math.round((result + Number.EPSILON) * 1000) / 1000;
+}
 
 let firstNum;
 let operator = null;
@@ -65,7 +63,7 @@ operateBtn.addEventListener('click', () => {
     let arr = display.textContent.split(/[\+|\-|\×|\÷]/);
     firstNum = +arr[0];
     secondNum = +arr[1];
-    displayValue = operate(operator, firstNum, secondNum);
+    displayValue = roundResult(operate(operator, firstNum, secondNum));
     updateDisplayValue();
     console.log(displayValue);
     console.log(firstNum, secondNum);
