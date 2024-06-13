@@ -30,28 +30,21 @@ let operator = null;
 let secondNum;
 
 const display = document.querySelector('.result');
-let displayValue = '';
 
 const operandBtn = document.querySelectorAll('.operand');
 operandBtn.forEach((button) => {
     button.addEventListener('click', () => {
-        displayValue += button.textContent
-        updateDisplayValue();
+        display.textContent += button.textContent
     })
 });
-
-function updateDisplayValue() {
-    display.textContent = displayValue;
-};
 
 const operatorBtn = document.querySelectorAll('.operator');
 operatorBtn.forEach((button) => {
     button.addEventListener('click', function () {
         // firstNum = display.textContent;
         operator = button.textContent;
-        displayValue += button.textContent;
-        history.textContent = displayValue;
-        updateDisplayValue();
+        display.textContent += button.textContent;
+        history.textContent = display.textContent;
     })
 });
 
@@ -59,13 +52,11 @@ const history = document.querySelector('.history');
 const operateBtn = document.querySelector('.operate');
 operateBtn.addEventListener('click', () => {
     if (operator == null) return;
-    history.textContent = displayValue;
+    history.textContent = display.textContent;
     let arr = display.textContent.split(/[\+|\-|\×|\÷]/);
     firstNum = +arr[0];
     secondNum = +arr[1];
-    displayValue = roundResult(operate(operator, firstNum, secondNum));
-    updateDisplayValue();
-    console.log(displayValue);
+    display.textContent = roundResult(operate(operator, firstNum, secondNum));
     console.log(firstNum, secondNum);
     operator = null;
 });
@@ -73,11 +64,10 @@ operateBtn.addEventListener('click', () => {
 const clearBtn = document.querySelector('.clear');
 clearBtn.addEventListener('click', () => {
     history.textContent = 'Cleared History!';
-    displayValue = '0';
+    display.textContent = '0';
     firstNum = '';
     secondNum = '';
     operator = null;
-    updateDisplayValue();
 });
 
 const deleteBtn = document.querySelector('.delete');
