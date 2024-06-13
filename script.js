@@ -75,11 +75,16 @@ operateBtn.addEventListener('click', () => {
 const clearBtn = document.querySelector('.clear');
 clearBtn.addEventListener('click', () => {
     history.textContent = 'Cleared History!';
-    displayValue = '';
+    displayValue = '0';
     firstNum = '';
     secondNum = '';
     operator = null;
     updateDisplayValue();
+});
+
+const deleteBtn = document.querySelector('.delete');
+deleteBtn.addEventListener('click', () => {
+    display.textContent = display.textContent.slice(0, -1)
 });
 
 /*
