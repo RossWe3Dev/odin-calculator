@@ -23,7 +23,7 @@ operatorBtn.forEach((button) => {
 
 operateBtn.addEventListener('click', evaluate);
 
-pointBtn.addEventListener('click', () => appendPoint(pointBtn.textContent));
+pointBtn.addEventListener('click', appendPoint);
 
 clearBtn.addEventListener('click', clearAll);
 deleteBtn.addEventListener('click', deleteChar);
@@ -37,11 +37,11 @@ function appendOperand(operand) {
     display.textContent += operand;
 };
 
-function appendPoint(point) {
+function appendPoint() {
     if (shouldResetDisplay) resetDisplay();
     if (display.textContent === '') display.textContent = '0';
     if (display.textContent.includes('.')) return;
-    display.textContent += point;
+    display.textContent += '.';
 };
 
 function appendOperator(operatorSign) {
@@ -112,26 +112,28 @@ function divide(a, b) {
 
 //* Keyboard Support Functions
 function handleKeyPress(e) {
-    const validNumbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-    const validOperators = ['+', '-', '*', '/']
-    const validEquals = ['=', 'Enter', 'Return'];
-    const validDecimal = ['.']
-    if (validNumbers.includes(e.key)) {
+    console.log(e.key);
+    if (/\d/.test(e.key)) {
         appendOperand(e.key);
-    } else if (validOperators.includes(e.key)) {
+    } else if (['+', '-', '*', '/'].includes(e.key)) {
         appendOperator(transformSign(e.key));
-    } else if (validEquals.includes(e.key)) {
+    } else if (['Enter', '=', 'Return'].includes(e.key)) {
         e.preventDefault();
         evaluate();
-    } else if (validDecimal.includes(e.key)) {
-        appendPoint(e.key);
+    } else if (e.key === '.') {
+        appendPoint();
     } else if (e.key === 'Backspace') {
         e.preventDefault();
         deleteChar();
+    } else if (e.key === 'Escape') {
+        e.preventDefault();
+        clearAll();
     } else {
+        e.preventDefault();
         return;
     }
 };
+
 
 function transformSign(e) {
     switch (e) {
