@@ -14,48 +14,58 @@ const deleteBtn = document.querySelector('.delete');
 
 //* Event Handlers
 operandBtn.forEach((button) => {
-    button.addEventListener('click', () => {
-        if (display.textContent === '0' || shouldResetDisplay) resetDisplay();
-
-        display.textContent += button.textContent
-    })
+    button.addEventListener('click', () => appendOperand(button.textContent));
 });
 
-pointBtn.addEventListener('click', () => {
-    if (shouldResetDisplay) resetDisplay();
-    if (display.textContent === '') display.textContent = '0';
-    if (display.textContent.includes('.')) return;
-    display.textContent += pointBtn.textContent;
-})
-
 operatorBtn.forEach((button) => {
-    button.addEventListener('click', function () {
-        if (operator !== null) evaluate();
-
-        firstNum = Number(display.textContent);
-        operator = button.textContent;
-
-        historyDisplay.textContent = `${firstNum}${operator}`;
-        shouldResetDisplay = true;
-    })
+    button.addEventListener('click', () => appendOperator(button.textContent))
 });
 
 operateBtn.addEventListener('click', evaluate);
 
-clearBtn.addEventListener('click', () => {
+pointBtn.addEventListener('click', () => appendPoint(pointBtn.textContent));
+
+clearBtn.addEventListener('click', clearAll);
+deleteBtn.addEventListener('click', deleteChar);
+
+document.addEventListener('keypress', handleKeyPress);
+
+
+//* EventListeners Callback Functions
+function appendOperand(operand) {
+    if (display.textContent === '0' || shouldResetDisplay) resetDisplay();
+    display.textContent += operand;
+};
+
+function appendPoint(point) {
+    if (shouldResetDisplay) resetDisplay();
+    if (display.textContent === '') display.textContent = '0';
+    if (display.textContent.includes('.')) return;
+    display.textContent += point;
+};
+
+function appendOperator(operatorSign) {
+    if (operator !== null) evaluate();
+    firstNum = Number(display.textContent);
+    operator = operatorSign;
+
+    historyDisplay.textContent = `${firstNum}${operator}`;
+    shouldResetDisplay = true;
+};
+
+function clearAll() {
     historyDisplay.textContent = 'Cleared History!';
     display.textContent = '0';
     firstNum = '';
     secondNum = '';
     operator = null;
-});
+}
 
-deleteBtn.addEventListener('click', () => {
+function deleteChar() {
     display.textContent = display.textContent.toString().slice(0, -1)
-});
+}
 
-
-//* Functions
+// Other Functions 
 function resetDisplay() {
     display.textContent = '';
     shouldResetDisplay = false
@@ -98,4 +108,21 @@ function multiply(a, b) {
 };
 function divide(a, b) {
     return a / b;
+};
+
+//* Keyboard Support
+function handleKeyPress(event) {
+    const validNumbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
+    const validKeys = ['+', '-', '*', '/', '.', '=', 'Enter', 'Return'];
+    if (validNumbers.includes(event.key)) {
+        // Process the valid number and display on calculator screen
+    } else if (validKeys.includes(event.key)) {
+        // Process the valid keypress and display on calculator screen
+    } else if (event.key === 'Backspace') {
+        event.preventDefault(); // Prevent default behavior (won't be included in validKeys)
+        // Implement logic to delete the displayed character on the calculator screen
+    } else {
+        // Handle invalid keypress (ignore or display an error message)
+        return;
+    }
 };
