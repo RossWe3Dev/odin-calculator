@@ -28,7 +28,7 @@ pointBtn.addEventListener('click', () => appendPoint(pointBtn.textContent));
 clearBtn.addEventListener('click', clearAll);
 deleteBtn.addEventListener('click', deleteChar);
 
-document.addEventListener('keypress', handleKeyPress);
+document.addEventListener('keypress', (e) => handleKeyPress(e));
 
 
 //* EventListeners Callback Functions
@@ -110,19 +110,36 @@ function divide(a, b) {
     return a / b;
 };
 
-//* Keyboard Support
-function handleKeyPress(event) {
+//* Keyboard Support Functions
+function handleKeyPress(e) {
     const validNumbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
-    const validKeys = ['+', '-', '*', '/', '.', '=', 'Enter', 'Return'];
-    if (validNumbers.includes(event.key)) {
-        // Process the valid number and display on calculator screen
-    } else if (validKeys.includes(event.key)) {
-        // Process the valid keypress and display on calculator screen
-    } else if (event.key === 'Backspace') {
-        event.preventDefault(); // Prevent default behavior (won't be included in validKeys)
-        // Implement logic to delete the displayed character on the calculator screen
+    const validOperators = ['+', '-', '*', '/']
+    const validEquals = ['=', 'Enter', 'Return'];
+    const validDecimal = ['.']
+    if (validNumbers.includes(e.key)) {
+        appendOperand(e.key);
+    } else if (validOperators.includes(e.key)) {
+        appendOperator(transformSign(e.key));
+    } else if (validEquals.includes(e.key)) {
+        e.preventDefault();
+        evaluate();
+    } else if (validDecimal.includes(e.key)) {
+        appendPoint(e.key);
+    } else if (e.key === 'Backspace') {
+        e.preventDefault();
+        deleteChar();
     } else {
-        // Handle invalid keypress (ignore or display an error message)
         return;
+    }
+};
+
+function transformSign(e) {
+    switch (e) {
+        case '/':
+            return '÷';
+        case '*':
+            return '×';
+        default:
+            return e;
     }
 };
