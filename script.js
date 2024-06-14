@@ -113,25 +113,21 @@ function divide(a, b) {
 //* Keyboard Support Functions
 function handleKeyPress(e) {
     console.log(e.key);
-    if (/\d/.test(e.key)) {
-        appendOperand(e.key);
-    } else if (['+', '-', '*', '/'].includes(e.key)) {
-        appendOperator(transformSign(e.key));
-    } else if (['Enter', '=', 'Return'].includes(e.key)) {
-        e.preventDefault();
-        evaluate();
-    } else if (e.key === '.') {
-        appendPoint();
-    } else if (e.key === 'Backspace') {
-        e.preventDefault();
-        deleteChar();
-    } else if (e.key === 'Escape') {
-        e.preventDefault();
-        clearAll();
-    } else {
-        e.preventDefault();
-        return;
-    }
+    if (/\d/.test(e.key)) appendOperand(e.key);
+    if (['+', '-', '*', '/'].includes(e.key)) appendOperator(transformSign(e.key));
+    if (['Enter', '=', 'Return'].includes(e.key)) {
+        e.preventDefault()
+        evaluate()
+    };
+    if (e.key === '.') appendPoint();
+    if (e.key === 'Backspace' || e.key.toLowerCase() === 'd') {
+        e.preventDefault()
+        deleteChar()
+    };
+    if (e.key === 'Escape' || e.key.toLowerCase() === 'c') {
+        e.preventDefault()
+        clearAll()
+    };
 };
 
 
